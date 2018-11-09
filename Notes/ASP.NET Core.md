@@ -46,3 +46,41 @@ __Deployment options__
 * Mac
     - Directly on Hardware
 
+###Startup Configuration###
+
+```C#
+public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        {
+            app.Run(async (context) =>
+            {
+                await context.Response.WriteAsync("Hello World!");
+            });
+        }
+```
+It does not wrap up in html magically. It does exactly that, return text "Hello World", not matter the route either
+
+```C#
+public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        {
+            app.UseStaticFiles();
+        }
+```
+Enable static file serving. By default, serve only the files under wwwroot folder
+
+```C#
+public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        {
+            app.UseDefaultFiles();
+        }
+```
+Enable default file mapping on the current path. Default files like index.html. Can be configured
+
+```C#
+public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        {
+            app.UseStaticFiles();
+            app.UseDefaultFiles();
+        }
+```
+Does not bring index.html by default. Order matters.
+
